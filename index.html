@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5MIDI2TRS — MIDI Adapter</title>
+  <meta name="description" content="5MIDI2TRS — простой и бюджетный двунаправленный MIDI-адаптер 5-pin DIN ↔ 3.5 mm TRS MIDI Type A / Type B.">
+  <style>
+    :root {
+      --bg: #f4f4f2;
+      --card: #ffffff;
+      --text: #171717;
+      --muted: #666;
+      --line: #deded9;
+      --accent: #111;
+      --soft: #ededeb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 20px 50px;
+    }
+
+    header {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 38px 34px;
+      margin-bottom: 24px;
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 7vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      font-size: clamp(18px, 3vw, 24px);
+      color: var(--muted);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero img, .gallery img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      background: #ddd;
+    }
+
+    .hero img {
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px 34px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 27px;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin: 24px 0 8px;
+      font-size: 19px;
+    }
+
+    p { margin: 0 0 14px; }
+
+    .lead {
+      font-size: 18px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .feature {
+      background: var(--soft);
+      border-radius: 12px;
+      padding: 17px 18px;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .diagram {
+      margin: 20px 0 4px;
+      padding: 22px;
+      border-radius: 12px;
+      background: #181818;
+      color: white;
+      text-align: center;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 16px;
+    }
+
+    ul {
+      margin-top: 8px;
+      padding-left: 23px;
+    }
+
+    li { margin: 6px 0; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .gallery img {
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .note {
+      border-left: 4px solid #222;
+      padding: 12px 16px;
+      background: var(--soft);
+      border-radius: 0 10px 10px 0;
+      color: #333;
+    }
+
+    .contacts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 30px;
+    }
+
+    .contacts a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px dotted #999;
+    }
+
+    .contacts a:hover {
+      border-bottom-style: solid;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 8px 10px 0;
+      font-size: 14px;
+    }
+
+    .repo {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      border-radius: 9px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .page { padding: 18px 12px 35px; }
+      header, section { padding: 24px 20px; border-radius: 14px; }
+      .hero, .features, .contacts { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <span class="label">DIY MIDI Adapter</span>
+      <h1>5MIDI2TRS</h1>
+      <p class="subtitle">5-pin DIN MIDI ↔ 3.5 mm TRS MIDI A / B</p>
+
+      <div class="hero">
+        <img src="https://raw.githubusercontent.com/sinitsinmike/5midi2trs/main/2026-01-09%2021.30.52.jpg" alt="5MIDI2TRS — вид спереди">
+        <img src="https://raw.githubusercontent.com/sinitsinmike/5midi2trs/main/2026-01-09%2021.30.59.jpg" alt="5MIDI2TRS — вид с другой стороны">
+      </div>
+    </header>
+
+    <section>
+      <h2>Простой MIDI-переходник</h2>
+      <p class="lead">
+        <strong>5MIDI2TRS</strong> — компактный и очень бюджетный двунаправленный
+        MIDI-адаптер для соединения классического <strong>5-pin DIN MIDI</strong>
+        с оборудованием, использующим <strong>3.5 мм TRS MIDI</strong>.
+      </p>
+      <p>
+        Основная задача устройства — сделать подключение максимально простым:
+        использовать обычный кабель с разъёмами 3.5 мм и при необходимости
+        переключить вариант распайки TRS MIDI непосредственно на корпусе.
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <strong>5-pin DIN MIDI</strong>
+          Классический MIDI-разъём для совместимости с большим количеством синтезаторов,
+          клавиатур и другого оборудования.
+        </div>
+        <div class="feature">
+          <strong>3.5 mm TRS MIDI</strong>
+          Компактный формат MIDI-подключения, широко используемый в небольших устройствах.
+        </div>
+        <div class="feature">
+          <strong>Type A / Type B</strong>
+          Переключение варианта TRS MIDI одной кнопкой.
+        </div>
+        <div class="feature">
+          <strong>Двунаправленная работа</strong>
+          Адаптер предназначен для работы в обоих направлениях MIDI-соединения.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Зачем он нужен?</h2>
+      <p>
+        В традиционном MIDI используется 5-контактный DIN-разъём. В компактных
+        современных MIDI-устройствах часто применяется 3.5 мм TRS-разъём.
+        При этом встречаются два варианта распайки — <strong>TRS Type A</strong>
+        и <strong>TRS Type B</strong>.
+      </p>
+      <p>
+        5MIDI2TRS объединяет эти варианты в одном небольшом устройстве.
+        Нужный тип выбирается кнопкой на корпусе, поэтому для смены режима
+        не требуется переделывать адаптер или искать другой переходник.
+      </p>
+
+      <div class="diagram">
+        5-pin DIN MIDI &nbsp; ↔ &nbsp; 5MIDI2TRS &nbsp; ↔ &nbsp; 3.5 mm TRS MIDI<br>
+        <small>TRS Type A ↔ Type B — переключается кнопкой</small>
+      </div>
+    </section>
+
+    <section>
+      <h2>Обычные 3.5 мм кабели</h2>
+      <p>
+        Устройство позволяет использовать распространённые кабели с разъёмами
+        <strong>3.5 mm TRS (stereo Jack)</strong> для MIDI-соединения.
+        Это удобно для компактных синтезаторов, контроллеров и DIY-устройств,
+        где полноразмерный DIN-разъём может занимать много места.
+      </p>
+      <div class="note">
+        Для подключения MIDI необходимо использовать подходящий TRS-кабель
+        с контактами Tip / Ring / Sleeve. Режим Type A или Type B выбирается
+        в соответствии с подключаемым оборудованием.
+      </div>
+    </section>
+
+    <section>
+      <h2>Двунаправленное подключение</h2>
+      <p>
+        Адаптер не преобразует MIDI-команды и не является MIDI-контроллером.
+        Его задача — обеспечить физическое соединение между двумя форматами
+        MIDI-разъёмов.
+      </p>
+      <ul>
+        <li>5-pin DIN → 3.5 mm TRS MIDI</li>
+        <li>3.5 mm TRS MIDI → 5-pin DIN</li>
+        <li>TRS Type A / Type B — выбирается переключателем</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Для кого</h2>
+      <ul>
+        <li>владельцев компактных синтезаторов;</li>
+        <li>пользователей MIDI-клавиатур и контроллеров;</li>
+        <li>музыкантов и звукорежиссёров;</li>
+        <li>DIY-разработчиков MIDI-оборудования;</li>
+        <li>создателей домашних и концертных MIDI-систем;</li>
+        <li>всех, кому нужно соединить 5-pin DIN MIDI и TRS MIDI.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Фотографии</h2>
+      <div class="gallery">
+        <img src="https://raw.githubusercontent.com/sinitsinmike/5midi2trs/main/2026-01-09%2021.30.56.jpg" alt="5MIDI2TRS">
+        <img src="https://raw.githubusercontent.com/sinitsinmike/5midi2trs/main/2026-01-09%2021.31.02.jpg" alt="5MIDI2TRS — корпус">
+        <img src="https://raw.githubusercontent.com/sinitsinmike/5midi2trs/main/2026-01-09%2021.31.05.jpg" alt="5MIDI2TRS — разъёмы">
+      </div>
+      <p style="margin-top:18px;">
+        <a class="repo" href="https://github.com/sinitsinmike/5midi2trs" target="_blank" rel="noopener">
+          GitHub проекта
+        </a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Контакты</h2>
+      <p><strong>Автор:</strong><br>Michael Sinitsin</p>
+
+      <div class="contacts">
+        <div>📧 <a href="mailto:sinitsinmike@yahoo.com">sinitsinmike@yahoo.com</a></div>
+        <div>📧 <a href="mailto:michaelsinitsin@mail.ru">michaelsinitsin@mail.ru</a></div>
+        <div>📞 <a href="tel:+79856041070">+7 (985) 604-10-70</a></div>
+        <div>Telegram: <a href="https://t.me/Miharussian" target="_blank" rel="noopener">@Miharussian</a></div>
+        <div>Telegram группа: <a href="https://t.me/SamodelnieSintezotory" target="_blank" rel="noopener">@SamodelnieSintezotory</a></div>
+        <div>VK: <a href="https://vk.com/michaelsinitsin" target="_blank" rel="noopener">vk.com/michaelsinitsin</a></div>
+        <div>Avito: <a href="https://www.avito.ru/brands/9d6afa796500fd0747cbfbc1f8305452" target="_blank" rel="noopener">Профиль на Avito</a></div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Michael Sinitsin
+    </footer>
+
+  </div>
+</body>
+</html>
